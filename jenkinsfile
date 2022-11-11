@@ -11,6 +11,16 @@ pipeline{
                    git branch: 'J2EE', url: 'git@github.com:parthu2/onlinebookstore.git'
                 }
             }
+            stage('compile'){
+            
+            steps{
+                
+                script{
+                    
+                    sh 'mvn compile'
+                }
+            }
+        }
             
           stage('UNIT testing'){
             
