@@ -49,5 +49,31 @@ pipeline{
                     sh 'mvn clean package'
             }
         }
+        stage('upload war file to nexus'){
+            
+            steps{
+                
+                script{
+                    def readPomVersion = readMavenPom file: 'pom.xml'
+                    def nexusRepo = readPomVersion.version.endsWith("SNAPSHOT") ? "prmaven-snapshot" : "prmaven-release"
+                    nexusArtifactUploader artifacts: 
+                    [
+                      [
+                      artifactId: 'petclinic', 
+                      classifier: '', file: 'target/petclinic.war', 
+                      type: 'war'
+                      ]
+                      ], 
+                      credentialsId: 'nexus-auth', 
+                      groupId: 'thymeleafexamples', 
+                      nexusUrl: '18.217.94.5:8081', 
+                      nexusVersion: 'nexus3', 
+                      protocol: 'http', 
+                      repository: nexusRepo, 
+                      version: "${readPomVersion.version}"
+                    
+                }
+            }
+        }
      }
    }  
