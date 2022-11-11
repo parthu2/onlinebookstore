@@ -60,7 +60,7 @@ pipeline{
                     [
                       [
                       artifactId: 'onlinebookstore', 
-                      classifier: '', file: 'target/onlinebookstore-1.0.1-SNAPSHOT.war', 
+                      classifier: '', file: 'target/onlinebookstore-1.0.0.war', 
                       type: 'war'
                       ]
                       ], 
