@@ -1,0 +1,43 @@
+pipeline{
+    
+    agent any 
+    
+    stages {
+        
+        stage('Git Checkout'){
+            
+            steps{
+                    
+                   git branch: 'J2EE', url: 'git@github.com:parthu2/onlinebookstore.git'
+                }
+            }
+            
+          stage('UNIT testing'){
+            
+            steps{
+                
+                script{
+                    
+                    sh 'mvn test'
+                }
+            }
+        }
+         stage('Integration testing'){
+            
+            steps{
+                
+                script{
+                    
+                    sh 'mvn verify -DskipUnitTests'
+                }
+            }
+        }
+        stage('Maven build package'){
+            
+            steps{
+                    
+                    sh 'mvn clean package'
+            }
+        }
+     }
+   }  
