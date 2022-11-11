@@ -59,13 +59,13 @@ pipeline{
                     nexusArtifactUploader artifacts: 
                     [
                       [
-                      artifactId: 'petclinic', 
-                      classifier: '', file: 'target/petclinic.war', 
+                      artifactId: 'onlinebookstore', 
+                      classifier: '', file: 'target/onlinebookstore.war', 
                       type: 'war'
                       ]
                       ], 
                       credentialsId: 'nexus-auth', 
-                      groupId: 'thymeleafexamples', 
+                      groupId: 'onlinebookstore', 
                       nexusUrl: '18.217.94.5:8081', 
                       nexusVersion: 'nexus3', 
                       protocol: 'http', 
